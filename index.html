@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>長崎トラベルプラン</title>
+  <style>
+    /* Global resets and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background-color: #f7f7f7;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      background-color: #ffffff;
+      border-bottom: 1px solid #eee;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+    header p {
+      margin-top: 1rem;
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .day-section {
+      margin-bottom: 4rem;
+      background-color: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .day-header {
+      padding: 2rem 2rem 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .day-header h2 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    .day-header span {
+      display: block;
+      margin-top: 0.25rem;
+      color: #999;
+    }
+    .image-large {
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+    }
+    .images-small {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .images-small .img {
+      flex: 1 1 33%;
+      min-height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    @media (max-width: 768px) {
+      .images-small .img {
+        flex-basis: 100%;
+      }
+    }
+    .info {
+      padding: 1.5rem 2rem;
+    }
+    .info ul {
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+    .info li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+    summary {
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+    }
+    details {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #fafafa;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    a {
+      color: #0070f3;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>長崎トラベルプラン</h1>
+    <p>ゆるく → 全力 → しっとり。メリハリある3日間の旅をご提案します。</p>
+  </header>
+  <div class="container">
+    <!-- Day 1 -->
+    <section class="day-section" id="day1">
+      <div class="day-header">
+        <h2>Day 1｜12/22 Sat</h2>
+        <span>佐世保をゆったり満喫</span>
+      </div>
+      <div class="image-large" style="background-image: url('https://www.sasebo99.com/storage/special_features/49/responsive_images/kbM5pFT8q5dZxnYDimlBj5Rg0Hl4EN2hV42VVkGZ__1600_1067.jpeg');"></div>
+      <div class="images-small">
+        <div class="img" style="background-image: url('https://www.99cruising.jp/wp-content/uploads/sites/4/2020/01/641_2x.png');"></div>
+        <div class="img" style="background-image: url('https://japanview.tv/wp-content/uploads/2021/08/123.jpg');"></div>
+        <div class="img" style="background-image: url('https://www.kohyo.co.jp/kywp/wp-content/uploads/2021/03/000519lemon_steak.jpg');"></div>
+      </div>
+      <div class="info">
+        <ul>
+          <li><strong>お昼：</strong>本場の佐世保バーガーで旅のスタート</li>
+          <li><strong>午後：</strong>九十九島クルーズで島々の景色を満喫 → 水族館「海きらら」でゆったり</li>
+          <li><strong>夜：</strong>佐世保名物レモンステーキを堪能</li>
+        </ul>
+        <details>
+          <summary>詳細を見る</summary>
+          <p>・移動は公共交通機関またはタクシーが便利です。<br>
+          ・九十九島クルーズは所要時間約50分、チケットは事前予約推奨。<br>
+          ・佐世保バーガーは人気店が多いので、ピーク時間を避けると快適に楽しめます。</p>
+        </details>
+      </div>
+    </section>
+    <!-- Day 2 -->
+    <section class="day-section" id="day2">
+      <div class="day-header">
+        <h2>Day 2｜12/23 Sun</h2>
+        <span>ハウステンボス全力遊び</span>
+      </div>
+      <div class="image-large" style="background-image: url('https://d1uyv6v1bosv8j.cloudfront.net/wp-content/uploads/2019/11/09115155/001.jpg');"></div>
+      <div class="images-small">
+        <div class="img" style="background-image: url('https://www.huistenbosch.co.jp/event/hikari/ogp.jpg');"></div>
+        <div class="img" style="background-image: url('https://www.huistenbosch.co.jp/storage/%3Aresize/660/440/shop/0000000825/image-7172cff9180f124fc22720104197282f.jpg');"></div>
+        <div class="img" style="background-image: url('https://kinarino.k-img.com/system/press_images/001/133/639/a4bb62b839f80e6a77c1e63f7232c6bdebc9eb06.jpg?1512365555=');"></div>
+      </div>
+      <div class="info">
+        <ul>
+          <li><strong>朝〜夕方：</strong>アトラクションやフォトスポットを巡って遊び尽くす</li>
+          <li><strong>夜：</strong>イルミネーション＆ライトアップに酔いしれる</li>
+        </ul>
+        <details>
+          <summary>詳細を見る</summary>
+          <p>・ハウステンボスは広大な敷地なので、エリア別に回る計画を立てると効率的です。<br>
+          ・人気アトラクションは早めに乗るのが吉。<br>
+          ・夜のイルミネーションは寒さ対策をお忘れなく。</p>
+        </details>
+      </div>
+    </section>
+    <!-- Day 3 -->
+    <section class="day-section" id="day3">
+      <div class="day-header">
+        <h2>Day 3｜12/24 Mon</h2>
+        <span>長崎市内観光＆夜景フィナーレ</span>
+      </div>
+      <div class="image-large" style="background-image: url('https://tabi-mag.jp/wp-content/uploads/NS009301.jpg');"></div>
+      <div class="images-small">
+        <div class="img" style="background-image: url('https://glover-garden.jp/wordpress/wp-content/themes/glovergarden/assets/img/img-about__buildings__glover%402x.jpg');"></div>
+        <div class="img" style="background-image: url('https://churchtrust.jp/wp/wp-content/uploads/2024/06/outra-history-image.jpg');"></div>
+        <div class="img" style="background-image: url('https://www.at-nagasaki.jp/storage/tourism_attractions/115/responsive_images/d6cug79ZG2nOscjMJ3WutxJMFU5VbQv2XG4H87va__1744_1160.jpg');"></div>
+      </div>
+      <div class="info">
+        <ul>
+          <li><strong>昼：</strong>新地中華街でランチ</li>
+          <li><strong>午後：</strong>グラバー園と大浦天主堂エリア散策（時間があれば出島も）</li>
+          <li><strong>夜：</strong>稲佐山から世界新三大夜景を堪能</li>
+        </ul>
+        <details>
+          <summary>詳細を見る</summary>
+          <p>・長崎市内は坂道が多いので歩きやすい靴がおすすめ。<br>
+          ・グラバー園は洋館が多く、フォトジェニックなスポットがいっぱい。<br>
+          ・稲佐山へのロープウェイはクリスマスシーズン混雑する場合もあるので、早めの行動を。</p>
+        </details>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>© 2025 長崎トラベルプラン. All rights reserved.</p>
+  </footer>
+</body>
+</html>
