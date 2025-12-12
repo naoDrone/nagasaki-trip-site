@@ -1,209 +1,548 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>長崎トラベルプラン</title>
+  <!-- Tailwind CSS via CDN.  This script will generate the styles on‑the‑fly based on utility classes used in the HTML.  See https://tailwindcss.com/docs/installation#using-tailwind-via-cdn for details. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Minimal custom tweaks to ensure scroll behaviour for anchor links. -->
   <style>
-    /* Global resets and base styles */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-        Arial, sans-serif;
-      line-height: 1.6;
-      color: #1a1a1a;
-      background-color: #f7f7f7;
-    }
-    header {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
-      background-color: #ffffff;
-      border-bottom: 1px solid #eee;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 600;
-    }
-    header p {
-      margin-top: 1rem;
-      color: #666;
-      font-size: 1.1rem;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-    .day-section {
-      margin-bottom: 4rem;
-      background-color: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    }
-    .day-header {
-      padding: 2rem 2rem 1rem;
-      border-bottom: 1px solid #eee;
-    }
-    .day-header h2 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 600;
-    }
-    .day-header span {
-      display: block;
-      margin-top: 0.25rem;
-      color: #999;
-    }
-    .image-large {
-      width: 100%;
-      height: 400px;
-      background-size: cover;
-      background-position: center;
-    }
-    .images-small {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .images-small .img {
-      flex: 1 1 33%;
-      min-height: 200px;
-      background-size: cover;
-      background-position: center;
-    }
-    @media (max-width: 768px) {
-      .images-small .img {
-        flex-basis: 100%;
-      }
-    }
-    .info {
-      padding: 1.5rem 2rem;
-    }
-    .info ul {
-      padding-left: 1.5rem;
-      margin: 0;
-    }
-    .info li {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-    summary {
-      font-weight: 500;
-      cursor: pointer;
-      margin-bottom: 0.5rem;
-    }
-    details {
-      margin-top: 1rem;
-      padding: 1rem;
-      background-color: #fafafa;
-      border-radius: 8px;
-      border: 1px solid #eee;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #999;
-      font-size: 0.9rem;
-    }
-    a {
-      color: #0070f3;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>長崎トラベルプラン</h1>
-    <p>ゆるく → 全力 → しっとり。メリハリある3日間の旅をご提案します。</p>
+<body class="bg-slate-50 text-slate-900">
+  <!-- Sticky navigation bar -->
+  <nav class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <a href="#top" class="flex items-center gap-2">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-900 text-white">✨</span>
+        <div class="leading-tight">
+          <p class="text-sm font-semibold">Nagasaki Trip</p>
+          <p class="text-xs text-slate-500">12/22–12/24</p>
+        </div>
+      </a>
+      <div class="hidden gap-2 md:flex">
+        <a href="#day1" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900">12/22 佐世保</a>
+        <a href="#day2" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900">12/23 ハウステンボス</a>
+        <a href="#day3" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900">12/24 長崎市内</a>
+      </div>
+      <a href="#gallery" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50">
+        📷
+        フォト
+      </a>
+    </div>
+  </nav>
+  
+  <!-- Hero section -->
+  <header id="top" class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <!-- Night view image from day3 (稲佐山 夜景) -->
+      <img src="https://www.at-nagasaki.jp/storage/tourism_attractions/115/responsive_images/d6cug79ZG2nOscjMJ3WutxJMFU5VbQv2XG4H87va__1744_1160.jpg" alt="稲佐山 夜景" class="h-[76vh] w-full object-cover" />
+      <!-- Soft white gradient overlay -->
+      <div class="absolute inset-0 bg-gradient-to-b from-white/85 via-white/55 to-slate-50"></div>
+    </div>
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+      <div class="max-w-3xl">
+        <p class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-sm text-slate-700">
+          📆
+          12/22 – 12/24
+        </p>
+        <h1 class="mt-6 text-5xl font-semibold tracking-tight md:text-7xl">
+          長崎3日間。
+          <span class="block text-slate-700">“ゆるく→全力→しっとり”の王道ルート。</span>
+        </h1>
+        <p class="mt-6 text-base leading-relaxed md:text-lg">
+          1日目は佐世保でゆるくスタート。2日目はハウステンボスを全力で満喫。
+          3日目は長崎市内と稲佐山の夜景で、きれいに締める。
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#day1" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800">プランを見る</a>
+          <a href="#highlights" class="rounded-full border border-slate-200 bg-white/80 px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-white">見どころ</a>
+        </div>
+      </div>
+    </div>
   </header>
-  <div class="container">
-    <!-- Day 1 -->
-    <section class="day-section" id="day1">
-      <div class="day-header">
-        <h2>Day 1｜12/22 Sat</h2>
-        <span>佐世保をゆったり満喫</span>
+  
+  <!-- Main content: day sections -->
+  <main class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="grid gap-12">
+      <!-- Day 1 Section -->
+      <section id="day1" class="scroll-mt-24">
+        <div class="rounded-[28px] border border-slate-200 bg-white shadow-sm">
+          <!-- Header with gradient -->
+          <div class="rounded-[28px] bg-gradient-to-br from-sky-500/10 via-white to-emerald-500/10 p-6 md:p-8">
+            <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">📅 Day 1 ・ 12/22</span>
+                  <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">⛴ ゆるく</span>
+                </div>
+                <h2 class="mt-4 text-2xl font-semibold tracking-tight text-slate-900 md:text-4xl">佐世保を“ゆるく観光デー”（体力温存）</h2>
+                <p class="mt-2 max-w-3xl text-slate-600 md:text-lg">グルメ × 海 × まったり。スタートから満足度高めに。</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">⏰ 詰めすぎない</span>
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">📷 撮れ高あり</span>
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">🚉 移動はゆるめ</span>
+                </div>
+              </div>
+              <button onclick="toggleDetails('day1')" class="mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 md:mt-0">
+                詳細を見る
+                <span class="transform transition-transform" id="chevron-day1">▼</span>
+              </button>
+            </div>
+          </div>
+          <!-- Photos grid -->
+          <div class="px-6 pb-6 pt-6 md:px-8">
+            <div class="grid gap-4 md:grid-cols-12">
+              <div class="md:col-span-7">
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://www.sasebo99.com/storage/special_features/49/responsive_images/kbM5pFT8q5dZxnYDimlBj5Rg0Hl4EN2hV42VVkGZ__1600_1067.jpeg" alt="佐世保バーガー" class="h-72 w-full object-cover md:h-96" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-5 text-sm font-medium text-white">佐世保バーガー（イメージ）</figcaption>
+                </figure>
+              </div>
+              <div class="grid gap-4 md:col-span-5">
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://www.99cruising.jp/wp-content/uploads/sites/4/2020/01/641_2x.png" alt="九十九島クルーズ" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">九十九島クルーズ（イメージ）</figcaption>
+                </figure>
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://japanview.tv/wp-content/uploads/2021/08/123.jpg" alt="九十九島" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">九十九島の景色（イメージ）</figcaption>
+                </figure>
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://www.kohyo.co.jp/kywp/wp-content/uploads/2021/03/000519lemon_steak.jpg" alt="レモンステーキ" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">レモンステーキ（イメージ）</figcaption>
+                </figure>
+              </div>
+            </div>
+            <!-- Essentials and mini timeline -->
+            <div class="mt-8 grid gap-4 md:grid-cols-12">
+              <div class="md:col-span-6">
+                <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                  <div class="flex items-center gap-2 text-slate-900">
+                    ✅
+                    <h3 class="text-base font-semibold">この日の要点（3つ）</h3>
+                  </div>
+                  <ul class="mt-4 space-y-2 text-sm text-slate-700 md:text-base">
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>昼：佐世保バーガー</span></li>
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>午後：九十九島クルーズ＋海きらら</span></li>
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>夜：レモンステーキ → ホテル</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="md:col-span-6">
+                <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                  <div class="flex items-center gap-2 text-slate-900">
+                    🕑
+                    <h3 class="text-base font-semibold">ミニタイムライン</h3>
+                  </div>
+                  <ul class="mt-4 space-y-2 text-sm text-slate-700 md:text-base">
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">昼</span><span>佐世保バーガー → 周辺を軽く散策</span></li>
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">午後</span><span>九十九島クルーズ → 海きらら</span></li>
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">夜</span><span>レモンステーキ → ハウステンボス宿</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Hidden details -->
+            <div class="overflow-hidden transition-all duration-300" id="details-day1" style="height: 0; opacity: 0;">
+              <div class="mt-6 grid gap-4 md:grid-cols-12">
+                <div class="md:col-span-6">
+                  <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                    <div class="flex items-center gap-2 text-slate-900">
+                      ✨
+                      <h3 class="text-base font-semibold">快適にするコツ</h3>
+                    </div>
+                    <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700 md:text-base">
+                      <li>初日は歩き回らず“満足度”を稼ぐのがコツ</li>
+                      <li>港周辺は風で冷えやすいので羽織りがあると強い</li>
+                      <li>クルーズは窓側が撮れ高高め（早めに並ぶと安心）</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="md:col-span-6">
+                  <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                    <div class="flex items-center gap-2 text-slate-900">
+                      📍
+                      <h3 class="text-base font-semibold">スポット（地図リンク）</h3>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <a href="https://www.google.com/maps/search/?api=1&query=佐世保バーガー+佐世保駅" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">佐世保駅周辺（バーガー）</a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=九十九島パールシーリゾート" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">九十九島パールシーリゾート</a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=海きらら" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">海きらら</a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=佐世保+レモンステーキ" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">佐世保 レモンステーキ</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Day 2 Section -->
+      <section id="day2" class="scroll-mt-24">
+        <div class="rounded-[28px] border border-slate-200 bg-white shadow-sm">
+          <!-- Header with gradient -->
+          <div class="rounded-[28px] bg-gradient-to-br from-fuchsia-500/10 via-white to-amber-500/10 p-6 md:p-8">
+            <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">📅 Day 2 ・ 12/23</span>
+                  <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">🎆 全力</span>
+                </div>
+                <h2 class="mt-4 text-2xl font-semibold tracking-tight text-slate-900 md:text-4xl">ハウステンボス全力DAY（旅行のメイン）</h2>
+                <p class="mt-2 max-w-3xl text-slate-600 md:text-lg">昼はワクワク、夜はキラキラ。冬の主役を取りに行く。</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">⏰ 詰めすぎない</span>
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">📷 撮れ高あり</span>
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">🚶 遊び倒す</span>
+                </div>
+              </div>
+              <button onclick="toggleDetails('day2')" class="mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 md:mt-0">
+                詳細を見る
+                <span class="transform transition-transform" id="chevron-day2">▼</span>
+              </button>
+            </div>
+          </div>
+          <!-- Photos grid -->
+          <div class="px-6 pb-6 pt-6 md:px-8">
+            <div class="grid gap-4 md:grid-cols-12">
+              <div class="md:col-span-7">
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://d1uyv6v1bosv8j.cloudfront.net/wp-content/uploads/2019/11/09115155/001.jpg" alt="ハウステンボス 昼" class="h-72 w-full object-cover md:h-96" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-5 text-sm font-medium text-white">ハウステンボス（昼の街並み）</figcaption>
+                </figure>
+              </div>
+              <div class="grid gap-4 md:col-span-5">
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://www.huistenbosch.co.jp/event/hikari/ogp.jpg" alt="ハウステンボス イルミ" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">イルミネーション（イメージ）</figcaption>
+                </figure>
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://www.huistenbosch.co.jp/storage/%3Aresize/660/440/shop/0000000825/image-7172cff9180f124fc22720104197282f.jpg" alt="ハウステンボス グルメ" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">グルメ（イメージ）</figcaption>
+                </figure>
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://kinarino.k-img.com/system/press_images/001/133/639/a4bb62b839f80e6a77c1e63f7232c6bdebc9eb06.jpg?1512365555=" alt="ハウステンボス 夜" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">夜の雰囲気（イメージ）</figcaption>
+                </figure>
+              </div>
+            </div>
+            <!-- Essentials and timeline -->
+            <div class="mt-8 grid gap-4 md:grid-cols-12">
+              <div class="md:col-span-6">
+                <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                  <div class="flex items-center gap-2 text-slate-900">
+                    ✅
+                    <h3 class="text-base font-semibold">この日の要点（3つ）</h3>
+                  </div>
+                  <ul class="mt-4 space-y-2 text-sm text-slate-700 md:text-base">
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>午前：人気スポット（待ち短め）</span></li>
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>午後：街並み散策＆グルメ休憩</span></li>
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>夜：イルミ＆ライトアップ（この旅の決め）</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="md:col-span-6">
+                <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                  <div class="flex items-center gap-2 text-slate-900">
+                    🕑
+                    <h3 class="text-base font-semibold">ミニタイムライン</h3>
+                  </div>
+                  <ul class="mt-4 space-y-2 text-sm text-slate-700 md:text-base">
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">午前</span><span>入園 → 人気アトラクション</span></li>
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">昼</span><span>街並み散策＆園内グルメ</span></li>
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">夜</span><span>イルミ／ライトアップをゆっくり</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Hidden details -->
+            <div class="overflow-hidden transition-all duration-300" id="details-day2" style="height: 0; opacity: 0;">
+              <div class="mt-6 grid gap-4 md:grid-cols-12">
+                <div class="md:col-span-6">
+                  <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                    <div class="flex items-center gap-2 text-slate-900">
+                      ✨
+                      <h3 class="text-base font-semibold">快適にするコツ</h3>
+                    </div>
+                    <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700 md:text-base">
+                      <li>夜が本番：午後に“余力”を残すと勝ち</li>
+                      <li>夕方（薄暮）→夜（イルミ）の連続撮影が最強</li>
+                      <li>冷え対策：手袋/カイロがあると快適度が跳ね上がる</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="md:col-span-6">
+                  <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                    <div class="flex items-center gap-2 text-slate-900">
+                      📍
+                      <h3 class="text-base font-semibold">スポット（地図リンク）</h3>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <a href="https://www.google.com/maps/search/?api=1&query=ハウステンボス" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">ハウステンボス</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Day 3 Section -->
+      <section id="day3" class="scroll-mt-24">
+        <div class="rounded-[28px] border border-slate-200 bg-white shadow-sm">
+          <!-- Header with gradient -->
+          <div class="rounded-[28px] bg-gradient-to-br from-indigo-500/10 via-white to-cyan-500/10 p-6 md:p-8">
+            <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">📅 Day 3 ・ 12/24</span>
+                  <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700">🗻 しっとり</span>
+                </div>
+                <h2 class="mt-4 text-2xl font-semibold tracking-tight text-slate-900 md:text-4xl">長崎市内観光＋夜景でしっとり締め</h2>
+                <p class="mt-2 max-w-3xl text-slate-600 md:text-lg">中華街 → 異国情緒 → 稲佐山。ラストが美しい。</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">⏰ 詰めすぎない</span>
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">📷 撮れ高あり</span>
+                  <span class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">🚶 散策多め</span>
+                </div>
+              </div>
+              <button onclick="toggleDetails('day3')" class="mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50 md:mt-0">
+                詳細を見る
+                <span class="transform transition-transform" id="chevron-day3">▼</span>
+              </button>
+            </div>
+          </div>
+          <!-- Photos grid -->
+          <div class="px-6 pb-6 pt-6 md:px-8">
+            <div class="grid gap-4 md:grid-cols-12">
+              <div class="md:col-span-7">
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://tabi-mag.jp/wp-content/uploads/NS009301.jpg" alt="長崎中華街" class="h-72 w-full object-cover md:h-96" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-5 text-sm font-medium text-white">長崎新地中華街（イメージ）</figcaption>
+                </figure>
+              </div>
+              <div class="grid gap-4 md:col-span-5">
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://glover-garden.jp/wordpress/wp-content/themes/glovergarden/assets/img/img-about__buildings__glover%402x.jpg" alt="グラバー園" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">グラバー園（イメージ）</figcaption>
+                </figure>
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://churchtrust.jp/wp/wp-content/uploads/2024/06/outra-history-image.jpg" alt="大浦天主堂" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">大浦天主堂（イメージ）</figcaption>
+                </figure>
+                <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+                  <img src="https://www.at-nagasaki.jp/storage/tourism_attractions/115/responsive_images/d6cug79ZG2nOscjMJ3WutxJMFU5VbQv2XG4H87va__1744_1160.jpg" alt="稲佐山 夜景" class="h-48 w-full object-cover md:h-44" loading="lazy">
+                  <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-sm font-medium text-white">稲佐山 夜景（イメージ）</figcaption>
+                </figure>
+              </div>
+            </div>
+            <!-- Essentials and timeline -->
+            <div class="mt-8 grid gap-4 md:grid-cols-12">
+              <div class="md:col-span-6">
+                <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                  <div class="flex items-center gap-2 text-slate-900">
+                    ✅
+                    <h3 class="text-base font-semibold">この日の要点（3つ）</h3>
+                  </div>
+                  <ul class="mt-4 space-y-2 text-sm text-slate-700 md:text-base">
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>昼：新地中華街で中華ランチ</span></li>
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>午後：グラバー園＋大浦天主堂（余裕で出島）</span></li>
+                    <li class="flex items-start gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-slate-400"></span><span>夜：稲佐山で夜景フィニッシュ</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="md:col-span-6">
+                <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                  <div class="flex items-center gap-2 text-slate-900">
+                    🕑
+                    <h3 class="text-base font-semibold">ミニタイムライン</h3>
+                  </div>
+                  <ul class="mt-4 space-y-2 text-sm text-slate-700 md:text-base">
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">昼</span><span>中華街でゆっくり</span></li>
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">午後</span><span>坂の街 → グラバー園／大浦天主堂</span></li>
+                    <li class="flex items-start gap-3"><span class="mt-0.5 w-10 shrink-0 rounded-full bg-slate-100 px-2 py-0.5 text-center text-xs font-semibold text-slate-700">夜</span><span>稲佐山（旅の終わりの一枚）</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Hidden details -->
+            <div class="overflow-hidden transition-all duration-300" id="details-day3" style="height: 0; opacity: 0;">
+              <div class="mt-6 grid gap-4 md:grid-cols-12">
+                <div class="md:col-span-6">
+                  <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                    <div class="flex items-center gap-2 text-slate-900">
+                      ✨
+                      <h3 class="text-base font-semibold">快適にするコツ</h3>
+                    </div>
+                    <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700 md:text-base">
+                      <li>坂道多め：歩きやすい靴が正義</li>
+                      <li>稲佐山は風が強い日あり。防寒は強めで安心</li>
+                      <li>グラバー園は日中の光が綺麗（建物の陰影が出る）</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="md:col-span-6">
+                  <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                    <div class="flex items-center gap-2 text-slate-900">
+                      📍
+                      <h3 class="text-base font-semibold">スポット（地図リンク）</h3>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <a href="https://www.google.com/maps/search/?api=1&query=長崎新地中華街" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">長崎新地中華街</a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=グラバー園" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">グラバー園</a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=大浦天主堂" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">大浦天主堂</a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=出島 長崎" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">出島</a>
+                      <a href="https://www.google.com/maps/search/?api=1&query=稲佐山" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50">稲佐山</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <!-- Highlights Section -->
+  <section id="highlights" class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="border-t border-slate-200 pt-12 md:pt-16"></div>
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-semibold tracking-tight md:text-5xl">この旅の見どころ</h2>
+      <p class="mt-3 text-slate-600 md:text-lg">“行きたい！”が伝わるポイントを短く。</p>
+    </div>
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
+      <div class="rounded-3xl border border-slate-200 bg-white p-6">
+        <div class="flex items-start gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-lg">🍔</span>
+          <div>
+            <p class="text-base font-semibold">グルメが強い</p>
+            <p class="mt-1 text-sm text-slate-600 md:text-base">佐世保バーガー／レモンステーキ／中華街。満足度が高い。</p>
+          </div>
+        </div>
       </div>
-      <div class="image-large" style="background-image: url('https://www.sasebo99.com/storage/special_features/49/responsive_images/kbM5pFT8q5dZxnYDimlBj5Rg0Hl4EN2hV42VVkGZ__1600_1067.jpeg');"></div>
-      <div class="images-small">
-        <div class="img" style="background-image: url('https://www.99cruising.jp/wp-content/uploads/sites/4/2020/01/641_2x.png');"></div>
-        <div class="img" style="background-image: url('https://japanview.tv/wp-content/uploads/2021/08/123.jpg');"></div>
-        <div class="img" style="background-image: url('https://www.kohyo.co.jp/kywp/wp-content/uploads/2021/03/000519lemon_steak.jpg');"></div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-6">
+        <div class="flex items-start gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-lg">🌊</span>
+          <div>
+            <p class="text-base font-semibold">自然と海</p>
+            <p class="mt-1 text-sm text-slate-600 md:text-base">九十九島は“長崎らしさ”が一発で入る景色。</p>
+          </div>
+        </div>
       </div>
-      <div class="info">
-        <ul>
-          <li><strong>お昼：</strong>本場の佐世保バーガーで旅のスタート</li>
-          <li><strong>午後：</strong>九十九島クルーズで島々の景色を満喫 → 水族館「海きらら」でゆったり</li>
-          <li><strong>夜：</strong>佐世保名物レモンステーキを堪能</li>
-        </ul>
-        <details>
-          <summary>詳細を見る</summary>
-          <p>・移動は公共交通機関またはタクシーが便利です。<br>
-          ・九十九島クルーズは所要時間約50分、チケットは事前予約推奨。<br>
-          ・佐世保バーガーは人気店が多いので、ピーク時間を避けると快適に楽しめます。</p>
-        </details>
+      <div class="rounded-3xl border border-slate-200 bg-white p-6">
+        <div class="flex items-start gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-lg">🎆</span>
+          <div>
+            <p class="text-base font-semibold">冬の主役</p>
+            <p class="mt-1 text-sm text-slate-600 md:text-base">ハウステンボスの夜は、映えと感動の両取り。</p>
+          </div>
+        </div>
       </div>
-    </section>
-    <!-- Day 2 -->
-    <section class="day-section" id="day2">
-      <div class="day-header">
-        <h2>Day 2｜12/23 Sun</h2>
-        <span>ハウステンボス全力遊び</span>
+      <div class="rounded-3xl border border-slate-200 bg-white p-6">
+        <div class="flex items-start gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-lg">🌃</span>
+          <div>
+            <p class="text-base font-semibold">夜景フィニッシュ</p>
+            <p class="mt-1 text-sm text-slate-600 md:text-base">稲佐山で締めると、余韻が段違い。</p>
+          </div>
+        </div>
       </div>
-      <div class="image-large" style="background-image: url('https://d1uyv6v1bosv8j.cloudfront.net/wp-content/uploads/2019/11/09115155/001.jpg');"></div>
-      <div class="images-small">
-        <div class="img" style="background-image: url('https://www.huistenbosch.co.jp/event/hikari/ogp.jpg');"></div>
-        <div class="img" style="background-image: url('https://www.huistenbosch.co.jp/storage/%3Aresize/660/440/shop/0000000825/image-7172cff9180f124fc22720104197282f.jpg');"></div>
-        <div class="img" style="background-image: url('https://kinarino.k-img.com/system/press_images/001/133/639/a4bb62b839f80e6a77c1e63f7232c6bdebc9eb06.jpg?1512365555=');"></div>
+    </div>
+  </section>
+  
+  <!-- Spacer for breathing room -->
+  <div class="h-10 md:h-14"></div>
+  
+  <!-- Gallery Section -->
+  <section id="gallery" class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="border-t border-slate-200 pt-12 md:pt-16"></div>
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-semibold tracking-tight md:text-5xl">フォトギャラリー</h2>
+      <p class="mt-3 text-slate-600 md:text-lg">旅の雰囲気が一瞬で伝わる写真まとめ。</p>
+    </div>
+    <!-- 12 photos grid: all images from the 3 days -->
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Day1 photos -->
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://www.sasebo99.com/storage/special_features/49/responsive_images/kbM5pFT8q5dZxnYDimlBj5Rg0Hl4EN2hV42VVkGZ__1600_1067.jpeg" alt="佐世保バーガー" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://www.99cruising.jp/wp-content/uploads/sites/4/2020/01/641_2x.png" alt="九十九島クルーズ" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://japanview.tv/wp-content/uploads/2021/08/123.jpg" alt="九十九島" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://www.kohyo.co.jp/kywp/wp-content/uploads/2021/03/000519lemon_steak.jpg" alt="レモンステーキ" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <!-- Day2 photos -->
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://d1uyv6v1bosv8j.cloudfront.net/wp-content/uploads/2019/11/09115155/001.jpg" alt="ハウステンボス 昼" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://www.huistenbosch.co.jp/event/hikari/ogp.jpg" alt="ハウステンボス イルミ" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://www.huistenbosch.co.jp/storage/%3Aresize/660/440/shop/0000000825/image-7172cff9180f124fc22720104197282f.jpg" alt="ハウステンボス グルメ" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://kinarino.k-img.com/system/press_images/001/133/639/a4bb62b839f80e6a77c1e63f7232c6bdebc9eb06.jpg?1512365555=" alt="ハウステンボス 夜" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <!-- Day3 photos -->
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://tabi-mag.jp/wp-content/uploads/NS009301.jpg" alt="長崎中華街" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://glover-garden.jp/wordpress/wp-content/themes/glovergarden/assets/img/img-about__buildings__glover%402x.jpg" alt="グラバー園" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://churchtrust.jp/wp/wp-content/uploads/2024/06/outra-history-image.jpg" alt="大浦天主堂" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+      <figure class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <img src="https://www.at-nagasaki.jp/storage/tourism_attractions/115/responsive_images/d6cug79ZG2nOscjMJ3WutxJMFU5VbQv2XG4H87va__1744_1160.jpg" alt="稲佐山 夜景" class="h-60 w-full object-cover" loading="lazy">
+      </figure>
+    </div>
+    <p class="mt-6 text-xs text-slate-500">※外部サイトの画像URLを利用しています</p>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-6xl px-4 py-10">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="text-sm font-semibold">Nagasaki Trip Brochure</p>
+          <p class="mt-1 text-xs text-slate-500">写真URLは外部参照です。表示されない場合はネットワークや元サイトの仕様をご確認ください。</p>
+        </div>
+        <a href="#top" class="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">
+          ✨ 先頭へ戻る
+        </a>
       </div>
-      <div class="info">
-        <ul>
-          <li><strong>朝〜夕方：</strong>アトラクションやフォトスポットを巡って遊び尽くす</li>
-          <li><strong>夜：</strong>イルミネーション＆ライトアップに酔いしれる</li>
-        </ul>
-        <details>
-          <summary>詳細を見る</summary>
-          <p>・ハウステンボスは広大な敷地なので、エリア別に回る計画を立てると効率的です。<br>
-          ・人気アトラクションは早めに乗るのが吉。<br>
-          ・夜のイルミネーションは寒さ対策をお忘れなく。</p>
-        </details>
-      </div>
-    </section>
-    <!-- Day 3 -->
-    <section class="day-section" id="day3">
-      <div class="day-header">
-        <h2>Day 3｜12/24 Mon</h2>
-        <span>長崎市内観光＆夜景フィナーレ</span>
-      </div>
-      <div class="image-large" style="background-image: url('https://tabi-mag.jp/wp-content/uploads/NS009301.jpg');"></div>
-      <div class="images-small">
-        <div class="img" style="background-image: url('https://glover-garden.jp/wordpress/wp-content/themes/glovergarden/assets/img/img-about__buildings__glover%402x.jpg');"></div>
-        <div class="img" style="background-image: url('https://churchtrust.jp/wp/wp-content/uploads/2024/06/outra-history-image.jpg');"></div>
-        <div class="img" style="background-image: url('https://www.at-nagasaki.jp/storage/tourism_attractions/115/responsive_images/d6cug79ZG2nOscjMJ3WutxJMFU5VbQv2XG4H87va__1744_1160.jpg');"></div>
-      </div>
-      <div class="info">
-        <ul>
-          <li><strong>昼：</strong>新地中華街でランチ</li>
-          <li><strong>午後：</strong>グラバー園と大浦天主堂エリア散策（時間があれば出島も）</li>
-          <li><strong>夜：</strong>稲佐山から世界新三大夜景を堪能</li>
-        </ul>
-        <details>
-          <summary>詳細を見る</summary>
-          <p>・長崎市内は坂道が多いので歩きやすい靴がおすすめ。<br>
-          ・グラバー園は洋館が多く、フォトジェニックなスポットがいっぱい。<br>
-          ・稲佐山へのロープウェイはクリスマスシーズン混雑する場合もあるので、早めの行動を。</p>
-        </details>
-      </div>
-    </section>
-  </div>
-  <footer>
-    <p>© 2025 長崎トラベルプラン. All rights reserved.</p>
+    </div>
   </footer>
+
+  <!-- Simple toggle script for details panels -->
+  <script>
+    function toggleDetails(day) {
+      const panel = document.getElementById(`details-${day}`);
+      const chevron = document.getElementById(`chevron-${day}`);
+      if (panel.style.height && panel.style.height !== '0px') {
+        panel.style.height = '0px';
+        panel.style.opacity = '0';
+        chevron.style.transform = 'rotate(0deg)';
+      } else {
+        panel.style.height = panel.scrollHeight + 'px';
+        panel.style.opacity = '1';
+        chevron.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
 </body>
 </html>
